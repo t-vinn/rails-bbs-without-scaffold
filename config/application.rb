@@ -1,3 +1,5 @@
+ENV.update YAML.load_file('config/secrets.yml')[Rails.env] rescue {}
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -6,7 +8,6 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-ENV.update YAML.load_file('config/secrets.yml')[Rails.env] rescue {}
 
 module BoardPlus
   class Application < Rails::Application
