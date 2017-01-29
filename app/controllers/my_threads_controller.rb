@@ -37,7 +37,7 @@ class MyThreadsController < ApplicationController
 
   def destroy
     if @my_thread.destroy
-      flash.now[:notice] = "the thread correctly deleted"
+      redirect_to "/", notice: "the thread correctly deleted"
     else 
       flash.now[:notice] = "an error occured and the thread was not deleted"
     end
