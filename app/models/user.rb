@@ -5,8 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :my_threads
+  has_many :comments
 
-  def username
-    name
-  end
+  validates :name, presence: true, length: {maximum: 50}
+
+
 end

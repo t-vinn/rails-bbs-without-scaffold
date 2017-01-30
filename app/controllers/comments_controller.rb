@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
 
   def index
-    @comments = Comment.all
+    @comments = @my_thread.comments
   end
 
   def new
