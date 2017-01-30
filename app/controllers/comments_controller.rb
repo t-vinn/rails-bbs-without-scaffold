@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :set_my_thread, only:[:new, :create]
+  before_action :set_comment, only:[:destroy]
+  before_action :set_my_thread, only:[:index, :new, :create, :destroy]
 
   def index
     @comments = Comment.all
@@ -21,7 +22,20 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    if @comment.destroy
+      redirect_to my_thread_comments_path(@my_thread),notice: "the comment correctly deleted"
+    else
+      flash.now[:notice] = "an error occured and the comment was not deleted"
+    end
+    
+  end
+
   private
+
+    def set_comment
+      @comment = Comment.find(params[:id])
+    end
 
     def set_my_thread
       @my_thread = MyThread.find(params[:my_thread_id])
