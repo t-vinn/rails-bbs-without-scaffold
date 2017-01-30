@@ -5,6 +5,5 @@ Rails.application.routes.draw do
   end
 
   root 'my_threads#index'
-  get 'my_threads/show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,21 @@
+<h1>スレッド詳細</h1>
+<p></p>
+<h2>コメント一覧<h2>
+<table style="font-size: 18px;">
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do  |comment| %>
+      <tr>
+        <td><%= comment.message %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'new comment', new_my_thread_comment_path %>

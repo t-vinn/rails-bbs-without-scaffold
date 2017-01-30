@@ -1,0 +1,15 @@
+<%= form_for comment, :url => {:action => "create"} do |f| %>
+
+  <div class ="field">
+    <%= f.label :message, "投稿内容"%>
+    <%= f.text_field :message %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :my_thread_id, value: @my_thread.id %>
+
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
