@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only:[:destroy]
-  before_action :set_my_thread, only:[:index, :new, :create, :destroy]
+  before_action :set_comment, only:[:edit, :update, :destroy]
+  before_action :set_my_thread, only:[:edit, :update, :index, :new, :create, :destroy]
 
 
   def index
@@ -9,18 +9,32 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new
-
   end
 
   def create
     @comment = Comment.new(comment_params)
 
     if @comment.save
-      redirect_to action: 'index', :notice =>"a new comment posted"
+      redirect_to action: 'index' 
+      flash.now[:alert] = "a new comment posted"
     else
       flash.now[:alert] = "the message is too short"
       render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @comment.update(comment_params)
+      redirect_to action: 'index' 
+      flash.now[:alert] = "the comment revised"
+    else
+      flash.now[:alert] = "the message is too short"
+      render :edit
+    end
+
   end
 
   def destroy

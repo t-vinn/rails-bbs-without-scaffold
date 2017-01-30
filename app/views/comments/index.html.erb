@@ -12,6 +12,7 @@
     <% @comments.each do  |comment| %>
       <tr>
         <td><%= comment.message %></td>
+        <td><%= link_to_if(comment.user_id == current_user.id, "edit", edit_my_thread_comment_path(@my_thread, comment)) {}%></td>
         <td><%= link_to_if(comment.user_id == current_user.id, "destroy", my_thread_comment_path(@my_thread, comment), method: :delete, data:{confirm: "Are you sure?"}) {}%></td>
       </tr>
     <% end %>
