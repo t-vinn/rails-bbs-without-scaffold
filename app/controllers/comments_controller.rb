@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only:[:destroy]
   before_action :set_my_thread, only:[:index, :new, :create, :destroy]
 
+
   def index
     @comments = Comment.all
   end
