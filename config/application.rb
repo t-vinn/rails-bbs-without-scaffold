@@ -1,4 +1,8 @@
-ENV.update YAML.load_file('config/secrets.yml')[Rails.env] rescue {}
+begin
+  ENV.update YAML.load_file('config/secrets.yml')[Rails.env]
+rescue
+  {}
+end
 
 require_relative 'boot'
 
@@ -7,7 +11,6 @@ require 'rails/all'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-
 
 module BoardPlus
   class Application < Rails::Application
